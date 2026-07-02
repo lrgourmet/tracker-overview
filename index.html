@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LR Gourmet — Business Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F4EEDF;
+    --parchment-deep:#EDE4CE;
+    --card:#FFFDF7;
+    --burgundy:#6E1F2A;
+    --burgundy-deep:#511620;
+    --brown:#3B2A1E;
+    --brown-soft:#6B5847;
+    --gold:#B8860B;
+    --gold-soft:#D9A93E;
+    --line:#DED2B4;
+
+    --c-signed:#3F6B3A;
+    --c-negotiating:#8B2635;
+    --c-waiting:#B8860B;
+    --c-blocked:#7A716A;
+    --c-backburner:#A99A7C;
+    --c-gap:#9C8FBF;
+    --c-open:#4C6C8C;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(110,31,42,0.05), transparent 40%),
+      radial-gradient(circle at 85% 92%, rgba(184,134,11,0.06), transparent 40%);
+    color:var(--brown);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+  }
+
+  header.top{
+    background:linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+    color:var(--parchment);
+    padding:14px 28px 12px;
+    position:relative;
+    overflow:hidden;
+  }
+  header.top::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:160px; height:160px;
+    border:1px solid rgba(244,238,223,0.12);
+    border-radius:50%;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:3px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:22px;
+    line-height:1.1;
+    margin:0;
+    letter-spacing:-0.01em;
+    display:inline;
+  }
+  .subtitle{
+    font-size:12px;
+    color:rgba(244,238,223,0.78);
+    display:inline;
+    margin-left:10px;
+  }
+
+  nav.tabs{
+    display:flex;
+    gap:4px;
+    padding:0 24px;
+    background:var(--parchment-deep);
+    border-bottom:1px solid var(--line);
+    overflow-x:auto;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  nav.tabs button{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:0.01em;
+    color:var(--brown-soft);
+    background:none;
+    border:none;
+    padding:10px 14px 8px;
+    cursor:pointer;
+    white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav.tabs button:hover{ color:var(--brown); }
+  nav.tabs button.active{
+    color:var(--burgundy);
+    border-bottom-color:var(--burgundy);
+  }
+  nav.tabs .count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--brown-soft);
+    margin-left:5px;
+  }
+
+  main{ max-width:1180px; margin:0 auto; padding:14px 24px 40px; }
+  .panel{ display:none; animation:fade .25s ease; }
+  .panel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0;
+    color:var(--burgundy-deep);
+  }
+  .section-note{
+    font-size:12.5px;
+    color:var(--brown-soft);
+    max-width:420px;
+    text-align:right;
+    line-height:1.4;
+  }
+
+  /* legend (expanded) */
+  .legend-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+    gap:8px;
+    margin:0 0 12px;
+  }
+  .legend-card{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:9px 11px;
+  }
+  .legend-card .dot{ width:13px; height:13px; border-radius:4px; flex-shrink:0; margin-top:2px; }
+  .legend-card b{ font-size:11.5px; color:var(--brown); display:block; margin-bottom:2px; }
+  .legend-card p{ font-size:10.5px; color:var(--brown-soft); margin:0; line-height:1.35; }
+
+  /* view toggle */
+  .view-toggle{
+    display:inline-flex;
+    background:var(--parchment-deep);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:2px;
+  }
+  .vt-btn{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:12px;
+    color:var(--brown-soft);
+    background:none;
+    border:none;
+    padding:6px 13px;
+    border-radius:6px;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .vt-btn.active{ background:var(--card); color:var(--burgundy); box-shadow:0 1px 3px rgba(59,42,30,0.12); }
+
+  /* board columns */
+  .board-columns{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+    gap:14px;
+    align-items:start;
+  }
+  .board-col{
+    background:var(--parchment-deep);
+    border-radius:12px;
+    padding:12px;
+  }
+  .board-col-head{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:6px;
+    margin-bottom:10px;
+    display:inline-block;
+  }
+  .board-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:11px 13px;
+    margin-bottom:9px;
+  }
+  .board-card:last-child{ margin-bottom:0; }
+  .board-card h4{
+    font-family:'Fraunces', serif;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 5px;
+    color:var(--brown);
+  }
+  .board-card details summary{
+    cursor:pointer; font-size:11px; font-weight:600; color:var(--burgundy);
+    list-style:none;
+  }
+  .board-card details summary::-webkit-details-marker{ display:none; }
+  .board-card details summary::before{ content:"+ details"; }
+  .board-card details[open] summary::before{ content:"\2013 hide"; }
+  .board-card details[open] summary{ margin-bottom:5px; }
+  .board-card p{ font-size:11.5px; color:var(--brown-soft); line-height:1.5; margin:0; }
+
+  /* network diagram */
+  .network-wrap{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:6px;
+    margin-bottom:10px;
+  }
+  #network-svg{ width:100%; height:auto; display:block; }
+  .network-scroll-hint{
+    display:none;
+    font-size:11px;
+    color:var(--brown-soft);
+    text-align:center;
+    margin:0 0 6px;
+    font-style:italic;
+  }
+  .node-circle{ cursor:pointer; transition:r .12s ease, stroke-width .12s ease; }
+  .node-circle:hover{ stroke-width:3; }
+  .node-label{
+    font-family:'Inter', sans-serif;
+    font-size:12px;
+    font-weight:600;
+    fill:var(--brown);
+    pointer-events:none;
+  }
+  .mm-header{
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    pointer-events:none;
+  }
+  .center-label{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:0.02em;
+  }
+  .mm-curve{ fill:none; opacity:0.85; }
+  .mm-curve.blocked{ stroke-dasharray:2 5; opacity:0.7; }
+
+  /* floating tooltip */
+  .node-tooltip{
+    display:none;
+    position:absolute;
+    z-index:20;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--burgundy);
+    border-radius:10px;
+    padding:12px 16px 12px 14px;
+    max-width:230px;
+    font-size:12px;
+    line-height:1.5;
+    box-shadow:0 6px 18px rgba(59,42,30,0.18);
+  }
+  .node-tooltip.show{ display:block; animation:fade .15s ease; }
+  .tt-close{
+    position:absolute; top:6px; right:8px;
+    background:none; border:none; cursor:pointer;
+    font-size:15px; color:var(--brown-soft); line-height:1;
+    padding:2px 4px;
+  }
+  .tt-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--burgundy-deep);
+    margin:0 14px 3px 0;
+  }
+  .tt-status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    font-weight:700;
+    margin-bottom:6px;
+    display:inline-block;
+  }
+  .tt-text{ margin:0; color:var(--brown-soft); font-size:11.5px; }
+
+
+  /* card grid */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:14px;
+  }
+  h3.subhead{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--burgundy);
+    margin:0 0 12px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line);
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    position:relative;
+    border-top:3px solid var(--c-open);
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16px;
+    margin:0 0 6px;
+    color:var(--brown);
+    padding-right:8px;
+  }
+  .status-pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    font-weight:600;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:20px;
+    color:#fff;
+    display:inline-block;
+    margin-bottom:10px;
+  }
+  .card summary{
+    cursor:pointer;
+    font-size:12px;
+    font-weight:600;
+    color:var(--burgundy);
+    list-style:none;
+    margin-top:2px;
+  }
+  .card summary::-webkit-details-marker{ display:none; }
+  .card summary::before{ content:"+ details"; }
+  .card details[open] summary::before{ content:"– hide"; }
+  .card details[open] summary{ margin-bottom:6px; }
+  .card p.detail-text{
+    font-size:12.5px;
+    color:var(--brown-soft);
+    line-height:1.5;
+    margin:0;
+  }
+
+  footer.foot{
+    text-align:center;
+    padding:26px;
+    font-size:11.5px;
+    color:var(--brown-soft);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width:640px){
+    h1.title{ font-size:28px; }
+    .section-head{ flex-direction:column; align-items:flex-start; }
+    .section-note{ text-align:left; }
+
+    /* tabs wrap into rows instead of hiding behind a sideways scroll */
+    nav.tabs{ flex-wrap:wrap; overflow-x:visible; row-gap:2px; }
+    nav.tabs button{ padding:8px 10px 6px; font-size:11.5px; }
+
+    /* keep the network diagram at a readable size; let it scroll horizontally
+       instead of shrinking text down to unreadable */
+    .network-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    #network-svg{ width:auto; min-width:680px; height:auto; }
+    .network-scroll-hint{ display:block; }
+  }
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="eyebrow">LR Gourmet · Internal Review</div>
+  <h1 class="title">Chefs, Suppliers &amp; Pipeline</h1>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button data-tab="chefs" class="active">Chef Network</button>
+  <button data-tab="suppliers">Supplier Network</button>
+  <button data-tab="inhouse">In-House Products</button>
+  <button data-tab="progress">In Progress</button>
+  <button data-tab="pipeline">Future / Pipeline</button>
+  <button data-tab="internal">Internal Projects</button>
+</nav>
+
+<main>
+
+  <!-- ===================== CHEF NETWORK ===================== -->
+  <section class="panel active" id="panel-chefs">
+    <div class="section-head">
+      <h2>Chef Network</h2>
+      <div class="view-toggle">
+        <button class="vt-btn active" data-view="board">Board View</button>
+        <button class="vt-btn" data-view="network">Network View</button>
+      </div>
+    </div>
+
+    <div class="legend-grid">
+      <div class="legend-card"><span class="dot" style="background:var(--c-signed)"></span><div><b>Signed / Active</b><p>Contract executed, actively selling.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:var(--c-negotiating)"></span><div><b>In Negotiation</b><p>Deal terms actively being finalized.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:var(--gold)"></span><div><b>Waiting on Paperwork</b><p>Basic agreement or MNDA sent, not yet signed.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:var(--c-backburner)"></span><div><b>Back Burner</b><p>Paused on an unresolved complication.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:var(--c-blocked)"></span><div><b>Blocked — Royalty Template</b><p>On hold until the general chef royalty agreement is finalized.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:var(--c-open)"></span><div><b>In Discussion</b><p>Partnership shape not yet defined.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:var(--c-gap)"></span><div><b>Cuisine Gap</b><p>Roster gap, no chef confirmed yet.</p></div></div>
+    </div>
+
+    <!-- BOARD VIEW -->
+    <div id="chef-board-view">
+      <div class="board-columns" id="chef-board"></div>
+    </div>
+
+    <!-- NETWORK VIEW -->
+    <div id="chef-network-view" style="display:none;">
+      <p class="network-scroll-hint">Scroll sideways to see the full diagram →</p>
+      <div class="network-wrap" id="network-wrap">
+        <svg id="network-svg" viewBox="0 0 1300 900" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="node-tooltip" id="node-tooltip">
+          <button class="tt-close" id="tt-close">&times;</button>
+          <div class="tt-title" id="tt-title"></div>
+          <div class="tt-status" id="tt-status"></div>
+          <p class="tt-text" id="tt-text"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SUPPLIER NETWORK ===================== -->
+  <section class="panel" id="panel-suppliers">
+    <div class="section-head">
+      <h2>Supplier Network</h2>
+      <div class="section-note">Non-chef partners: ingredients, packaging, and box production.</div>
+    </div>
+    <h3 class="subhead">Food Suppliers</h3>
+    <div class="grid" id="grid-suppliers-food"></div>
+    <h3 class="subhead" style="margin-top:26px;">Non-Food &amp; Packaging Suppliers</h3>
+    <div class="grid" id="grid-suppliers-nonfood"></div>
+  </section>
+
+  <!-- ===================== IN-HOUSE PRODUCTS ===================== -->
+  <section class="panel" id="panel-inhouse">
+    <div class="section-head">
+      <h2>LRG In-House Products</h2>
+      <div class="section-note">Owned, developed, and branded by LR Gourmet itself.</div>
+    </div>
+    <div class="grid" id="grid-inhouse"></div>
+  </section>
+
+  <!-- ===================== IN PROGRESS ===================== -->
+  <section class="panel" id="panel-progress">
+    <div class="section-head">
+      <h2>In Progress</h2>
+      <div class="section-note">Active and unblocked — moving toward market now.</div>
+    </div>
+    <div class="grid" id="grid-progress"></div>
+  </section>
+
+  <!-- ===================== FUTURE / PIPELINE ===================== -->
+  <section class="panel" id="panel-pipeline">
+    <div class="section-head">
+      <h2>Future / Pipeline</h2>
+      <div class="section-note">Identified opportunities, not yet active.</div>
+    </div>
+    <div class="grid" id="grid-pipeline"></div>
+  </section>
+
+  <!-- ===================== INTERNAL PROJECTS ===================== -->
+  <section class="panel" id="panel-internal">
+    <div class="section-head">
+      <h2>Internal Projects</h2>
+      <div class="section-note">Legal, finance, and operations running behind everything above.</div>
+    </div>
+    <div class="grid" id="grid-internal"></div>
+  </section>
+
+</main>
+
+
+
+<script>
+/* ---------------- DATA ---------------- */
+
+const chefs = [
+  {name:"Mawa McQueen", status:"signed", label:"Signed", detail:"Signed and active. Bowl, spoon, and granola set currently in design/production."},
+  {name:"Claude Le Tohic", status:"signed", label:"Signed", detail:"Signed and active. No open items."},
+  {name:"José Andrés", status:"negotiating", label:"In Negotiation", detail:"Deciding today on the approach for a simplified royalty agreement."},
+  {name:"Thomas Keller", status:"negotiating", label:"In Negotiation", detail:"Waiting on contract feedback. His team is designing a collaboration box in parallel and won't walk away from it unsigned. Also waiting on approval to use his image in the meantime."},
+  {name:"Thierry Atlan", status:"waiting", label:"Waiting on Paperwork", detail:"Not yet onboarding. Waiting on the Basic Chef Agreement and MNDA to be signed."},
+  {name:"Jean-Georges", status:"backburner", label:"Back Burner", detail:"On hold. Complication is twofold: restarting some products that were previously made with other suppliers, and navigating a contact on their side who isn't very open to moving forward."},
+  {name:"Loiseau", status:"waiting", label:"Waiting on Paperwork", detail:"MNDA sent. Awaiting signed paperwork \u2014 not blocked by the royalty template."},
+  {name:"Dominique Ansel", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. BIY Cronut product is on hold as a result."},
+  {name:"Carla Hall", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. Chicken & Waffles and Biscuits products are on hold as a result."},
+  {name:"Daniel Boulud", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. Madeleine product is on hold as a result (confirmed across three separate assortment meetings)."},
+  {name:"Aldo Sohm", status:"open", label:"In Discussion", detail:"Sommelier partnership, likely tied to S\u00e8chey's non-alcoholic wine program \u2014 exact structure not yet settled. Not necessarily blocked by the royalty template."},
+  {name:"St\u00e9phane Grattier", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Baguette baker. Blocked pending the general royalty template."},
+  {name:"American Non-Snack", status:"gap", label:"Cuisine Gap", detail:"Gap in current roster. Thomas Douglas identified as a potential fit \u2014 his \u201cRub with Love\u201d spice rub line is one example category to explore."},
+  {name:"Asian", status:"gap", label:"Cuisine Gap", detail:"Gap in current roster. No chef identified yet."},
+  {name:"BBQ", status:"gap", label:"Cuisine Gap", detail:"Gap in current roster. Andrew Zimmern identified as a potential fit."},
+  {name:"Mexican / Tex-Mex", status:"gap", label:"Cuisine Gap", detail:"Gap in current roster. No chef identified yet."}
+];
+
+const statusOrder = ["signed","negotiating","waiting","backburner","open","blocked","gap"];
+const statusGroupLabel = {
+  signed:"Signed / Active", negotiating:"In Negotiation", waiting:"Waiting on Paperwork",
+  backburner:"Back Burner", open:"In Discussion", blocked:"Blocked \u2014 Royalty Template", gap:"Cuisine Gap"
+};
+
+const statusColor = {
+  signed:"var(--c-signed)",
+  negotiating:"var(--c-negotiating)",
+  waiting:"var(--gold)",
+  backburner:"var(--c-backburner)",
+  blocked:"var(--c-blocked)",
+  gap:"var(--c-gap)",
+  open:"var(--c-open)"
+};
+const statusColorHex = {
+  signed:"#3F6B3A", negotiating:"#8B2635", waiting:"#B8860B",
+  backburner:"#A99A7C", blocked:"#7A716A", gap:"#9C8FBF", open:"#4C6C8C", production:"#4A7A78"
+};
+
+const suppliersFood = [
+  {name:"Pastry Star", status:"signed", label:"Active", detail:"Active supplier partner across baguette and other in-house baked product development."},
+  {name:"Palais des Th\u00e9s", status:"signed", label:"Onboarded", detail:"MNDA signed. Needs to be worked into box assortments. ASI channel angle in play \u2014 selling into other gifting companies, not just direct. Tea box with Daniel Boulud is blocked pending his royalty agreement. Museum box collaboration work needs to get moving."},
+  {name:"Fallot", status:"waiting", label:"MNDA Not Yet Sent", detail:"Mustard supplier. In onboarding queue, MNDA not yet sent."},
+  {name:"Apidis", status:"waiting", label:"MNDA Not Yet Sent", detail:"Honey supplier. In onboarding queue, MNDA not yet sent."},
+  {name:"Le Waf", status:"waiting", label:"Needs Onboarding \u2014 JPM", detail:"Waffle supplier. Onboarding needed specifically to support the JP Morgan 90-day shelf-life assortment tier. MNDA not yet sent."},
+  {name:"S\u00e8chey", status:"waiting", label:"MNDA Not Yet Sent", detail:"Non-alcoholic wine. Francis and Charles testing product. Small bottles are the priority format. Possible connection to Aldo Sohm partnership. MNDA not yet sent."},
+  {name:"Hammond's / Lolli & Pop's", status:"waiting", label:"MNDA Not Yet Sent", detail:"Confectionery suppliers. MNDA not yet sent."},
+  {name:"Savencia Cheese", status:"waiting", label:"MNDA Not Yet Sent", detail:"Cheese supplier, tied to the Daniel Boulud cheese tray concept. MNDA not yet sent."},
+  {name:"Moutarde", status:"waiting", label:"MNDA Not Yet Sent", detail:"Mustard supplier. MNDA not yet sent."},
+  {name:"Regiis Ova Caviar", status:"waiting", label:"Onboarding", detail:"Thomas Keller-linked caviar supplier. Being onboarded alongside Paramount Caviar rather than choosing one over the other."},
+  {name:"Paramount Caviar", status:"waiting", label:"Onboarding", detail:"Being onboarded alongside Regiis Ova rather than choosing one over the other. Can ship and produce boxes directly; still need to get them into the showroom."}
+];
+
+const suppliersNonFood = [
+  {name:"Valley Container", status:"production", label:"Box Supplier", detail:"Corrugated box producer, an established packaging partner for standard and custom boxes."},
+  {name:"Pack Edge", status:"production", label:"Box Supplier", detail:"Baguette box producer. Awaiting full baguette samples so they can adjust the box size and requote."},
+  {name:"Rigid Box Suppliers", status:"waiting", label:"Sizing Needed", detail:"Several suppliers already identified for rigid boxes. Still need to define final box sizes for the Paella kit and lux box versions before finalizing."},
+  {name:"Garnier Thibault", status:"waiting", label:"Waiting on Design", detail:"LRG-branded kitchen towel supplier. Not an onboarding item \u2014 waiting on towel designs before moving forward."}
+];
+
+const inhouse = [
+  {name:"Baguette Kit", status:"open", label:"In Development", detail:"Two-pack confirmed (French + Sourdough) \u2014 no 3-pack. Packaging still finalizing. Next step: get full samples over to Pack Edge to adjust box size and requote. Blocked on the chef side: St\u00e9phane Grattier's agreement is pending the general royalty template."},
+  {name:"Madeleine", status:"blocked", label:"Blocked \u2014 Royalty (Boulud)", detail:"In-house Madeleine product tied to Daniel Boulud, confirmed across three separate assortment meetings. On hold pending his royalty agreement."},
+  {name:"BIY Cronut", status:"blocked", label:"Blocked \u2014 Royalty (Ansel)", detail:"In-house Cronut product tied to Dominique Ansel. On hold pending his royalty agreement."},
+  {name:"Chicken & Waffles", status:"blocked", label:"Blocked \u2014 Royalty (Carla Hall)", detail:"In-house savory waffle product tied to Carla Hall. On hold pending her royalty agreement."},
+  {name:"Biscuits", status:"blocked", label:"Blocked \u2014 Royalty (Carla Hall)", detail:"In-house biscuit product tied to Carla Hall. On hold pending her royalty agreement."}
+];
+
+const progress = [
+  {name:"Thomas Keller Collaboration Box", status:"open", label:"In Progress", detail:"Co-designed box with the Thomas Keller team, moving in parallel with contract finalization."},
+  {name:"Holiday Box", status:"open", label:"In Progress", detail:"Active design and assortment work underway."},
+  {name:"Paella Kit", status:"open", label:"In Progress", detail:"Waiting on two samples \u2014 rice and sofrito sauce. Also waiting on an introduction to the Costco buyer."},
+  {name:"Hilton Tapas Kit", status:"open", label:"In Progress", detail:"Built around José Andrés's signed book plus a tapas ramekins/board concept. Non-food items still need sourcing, and final pricing is outstanding. Also still waiting to hear whether Hilton approves of the concept at all."},
+  {name:"JP Morgan Assortments", status:"open", label:"Needs Pricing", detail:"Two shelf-life tiers defined; final pricing still needs to be completed. Depends on Le Waf being onboarded to support the 90-day tier."}
+];
+
+const pipeline = [
+  {name:"Matcha Kit", status:"gap", label:"Needs Assortment", detail:"Palais des Thés product. Assortment still needs to be built."},
+  {name:"Museum Boxes", status:"gap", label:"Pipeline", detail:"With Palais des Thés \u2014 targeting the Met, MoMA, and possibly the Guggenheim."},
+  {name:"ASI Sales Channel", status:"gap", label:"Pipeline", detail:"Selling into the broader promotional-products distributor channel, beyond any single supplier."},
+  {name:"LRG-Branded Towel Line", status:"gap", label:"Pipeline", detail:"With Garnier Thibault, waiting on towel designs."},
+  {name:"Thanksgiving Box", status:"gap", label:"Possible", detail:"Under consideration, not yet active."},
+  {name:"Thierry Atlan Porcelain Macaron Tray", status:"gap", label:"Pipeline", detail:"Concept identified, pending Thierry Atlan's agreement."}
+];
+
+const internal = [
+  {name:"General Royalty Template", status:"waiting", label:"In Progress", detail:"Starting point is 3%. A working session with Stanislas needs to be scheduled. This template unblocks Ansel, Hall, Boulud, Aldo Sohm, and Stéphane Grattier all at once."},
+  {name:"Services Agreement", status:"waiting", label:"Awaiting Return", detail:"One line was added; now waiting for it to come back."},
+  {name:"Accounting Setup", status:"blocked", label:"Blocking Invoicing", detail:"No signed contract yet with the accounting firm. Avalara is also unsigned. This combination is currently blocking invoicing entirely."},
+  {name:"Insurance", status:"blocked", label:"Capped at $1M", detail:"Coverage is still capped at $1M \u2014 no sign-off yet on the increase. D&O insurance is not yet in place."},
+  {name:"November Hudson Yards Event", status:"open", label:"Planning", detail:"Event planning in progress for November."},
+  {name:"Dior Insert", status:"open", label:"In Progress", detail:"Packaging insert project for the boxes."}
+];
+
+/* ---------------- RENDER: CARD GRIDS ---------------- */
+
+function renderGrid(containerId, items){
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(it => `
+    <div class="card" style="border-top-color:${statusColorHex[it.status]}">
+      <span class="status-pill" style="background:${statusColorHex[it.status]}">${it.label}</span>
+      <h3>${it.name}</h3>
+      <details>
+        <summary></summary>
+        <p class="detail-text">${it.detail}</p>
+      </details>
+    </div>
+  `).join('');
+}
+
+renderGrid('grid-suppliers-food', suppliersFood);
+renderGrid('grid-suppliers-nonfood', suppliersNonFood);
+renderGrid('grid-inhouse', inhouse);
+renderGrid('grid-progress', progress);
+renderGrid('grid-pipeline', pipeline);
+renderGrid('grid-internal', internal);
+
+/* ---------------- RENDER: CHEF BOARD VIEW ---------------- */
+
+function renderChefBoard(){
+  const board = document.getElementById('chef-board');
+  board.innerHTML = statusOrder.map(st => {
+    const items = chefs.filter(c => c.status === st);
+    if(!items.length) return '';
+    return `
+      <div class="board-col">
+        <span class="board-col-head" style="background:${statusColorHex[st]}">${statusGroupLabel[st]}</span>
+        ${items.map(c => `
+          <div class="board-card">
+            <h4>${c.name}</h4>
+            <details>
+              <summary></summary>
+              <p>${c.detail}</p>
+            </details>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }).join('');
+}
+renderChefBoard();
+
+/* ---------------- VIEW TOGGLE (board / network) ---------------- */
+
+document.querySelectorAll('.vt-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.vt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const view = btn.dataset.view;
+    document.getElementById('chef-board-view').style.display = (view === 'board') ? 'block' : 'none';
+    document.getElementById('chef-network-view').style.display = (view === 'network') ? 'block' : 'none';
+  });
+});
+
+/* ---------------- RENDER: CHEF NETWORK (mind-map style) ---------------- */
+
+const svgNS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById('network-svg');
+const VBW = 1300, VBH = 900;
+const cx = 650, cy = 450;
+
+function makeEl(tag, attrs){
+  const e = document.createElementNS(svgNS, tag);
+  for(const k in attrs) e.setAttribute(k, attrs[k]);
+  return e;
+}
+function polar(r, angleDeg){
+  const a = angleDeg * Math.PI/180;
+  return { x: cx + r*Math.cos(a), y: cy + r*Math.sin(a) };
+}
+
+const hubShortLabel = {
+  signed:"Signed", negotiating:"Negotiating", waiting:"Waiting", backburner:"Back Burner",
+  open:"In Discussion", blocked:"Blocked", gap:"Gaps"
+};
+
+// deliberate layout order, going clockwise from the left: Signed, Negotiating, Waiting,
+// Blocked, In Discussion, Back Burner, Gaps
+const layoutOrder = ["signed","negotiating","waiting","gap","backburner","open","blocked"];
+const angleStart = -75; // degrees, offset off vertical
+const headerDist = { signed:200, negotiating:255, waiting:270, blocked:300, open:290, backburner:270, gap:225 };
+
+// --- defs: soft glow behind the center node ---
+const defs = makeEl('defs', {});
+const glowFilter = makeEl('filter', {id:'centerGlow', x:'-100%', y:'-100%', width:'300%', height:'300%'});
+glowFilter.appendChild(makeEl('feGaussianBlur', {stdDeviation:10, result:'blur'}));
+defs.appendChild(glowFilter);
+svg.appendChild(defs);
+
+const curveLayer = makeEl('g', {});
+const nodeLayer = makeEl('g', {});
+
+// glow halo + center node
+const glow = makeEl('circle', {cx, cy, r:40, fill:'#D9A93E', opacity:0.35, filter:'url(#centerGlow)'});
+const centerCircle = makeEl('circle', {cx, cy, r:34, fill:'#FFFDF7', stroke:'#DED2B4', 'stroke-width':2});
+const centerLabel = makeEl('text', {x:cx, y:cy+6, 'text-anchor':'middle', class:'center-label', fill:'var(--burgundy-deep)'});
+centerLabel.textContent = 'LRG';
+
+const groups = layoutOrder.map(st => ({ status: st, items: chefs.filter(c => c.status === st) })).filter(g => g.items.length);
+const nGroups = groups.length;
+
+// track the true extent of everything drawn, so the viewBox can be fit tightly
+// and centered afterward without ever calling getBBox()
+let minX = cx - 55, maxX = cx + 55, minY = cy - 55, maxY = cy + 55;
+function extend(x, y){
+  if (x < minX) minX = x;
+  if (x > maxX) maxX = x;
+  if (y < minY) minY = y;
+  if (y > maxY) maxY = y;
+}
+
+groups.forEach((g, i) => {
+  const st = g.status, items = g.items, n = items.length;
+  const angle = angleStart + (i / nGroups) * 360;
+  const R = headerDist[st];
+  const header = polar(R, angle);
+  const color = statusColorHex[st];
+  const side = header.x < cx ? 'left' : 'right';
+  const dx = header.x - cx, dy = header.y - cy;
+  const vertical = Math.abs(dy) > Math.abs(dx) * 1.15; // dominant-axis test for the elbow curve
+
+  // header label
+  const headerLabel = makeEl('text', {
+    x:header.x, y:header.y, 'text-anchor': side === 'left' ? 'end' : 'start',
+    class:'mm-header', fill:color
+  });
+  headerLabel.textContent = hubShortLabel[st];
+  nodeLayer.appendChild(headerLabel);
+
+  // underline sized roughly to the label text
+  const textW = hubShortLabel[st].length * 8.4;
+  const ulX1 = side === 'left' ? header.x - textW : header.x;
+  const ulX2 = side === 'left' ? header.x : header.x + textW;
+  nodeLayer.appendChild(makeEl('line', {x1:ulX1, y1:header.y+6, x2:ulX2, y2:header.y+6, stroke:color, 'stroke-width':1.5}));
+  extend(ulX1, header.y - 14);
+  extend(ulX2, header.y + 6);
+
+  items.forEach((chef, j) => {
+    const itemY = header.y + 34 + j * 32;
+    const itemX = header.x;
+
+    // elbow bezier from center out to the item, bending along whichever axis dominates
+    let c1, c2;
+    if (vertical){
+      c1 = { x: cx, y: cy + (itemY - cy) * 0.55 };
+      c2 = { x: itemX, y: cy + (itemY - cy) * 0.55 };
+    } else {
+      c1 = { x: cx + (itemX - cx) * 0.5, y: cy };
+      c2 = { x: cx + (itemX - cx) * 0.5, y: itemY };
+    }
+    const d = `M ${cx} ${cy} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${itemX} ${itemY}`;
+    const isBlocked = (st === 'blocked');
+    curveLayer.appendChild(makeEl('path', {
+      d, fill:'none', stroke:color, 'stroke-width':1.6,
+      class: isBlocked ? 'mm-curve blocked' : 'mm-curve'
+    }));
+
+    const circle = makeEl('circle', {cx:itemX, cy:itemY, r:7, fill:color, stroke:'#FFFDF7', 'stroke-width':1.6, class:'node-circle'});
+    const labelX = side === 'left' ? itemX - 13 : itemX + 13;
+    const label = makeEl('text', {x:labelX, y:itemY+4, 'text-anchor': side === 'left' ? 'end' : 'start', class:'node-label'});
+    label.textContent = chef.name;
+    label.style.cursor = 'pointer';
+
+    nodeLayer.appendChild(circle);
+    nodeLayer.appendChild(label);
+
+    // extend the bounding box to cover this item's dot and its name text
+    const textLen = chef.name.length * 7.2;
+    const nameFarX = side === 'left' ? labelX - textLen : labelX + textLen;
+    extend(nameFarX, itemY - 9);
+    extend(itemX, itemY + 9);
+
+    const idx = chefs.indexOf(chef);
+    circle.addEventListener('click', () => showChefTooltip(idx, {x:itemX, y:itemY}));
+    label.addEventListener('click', () => showChefTooltip(idx, {x:itemX, y:itemY}));
+  });
+});
+
+svg.appendChild(curveLayer);
+nodeLayer.appendChild(glow);
+nodeLayer.appendChild(centerCircle);
+nodeLayer.appendChild(centerLabel);
+svg.appendChild(nodeLayer);
+
+// fit and center the viewBox tightly around everything actually drawn
+const pad = 34;
+const currentViewX = minX - pad;
+const currentViewY = minY - pad;
+const currentViewW = (maxX - minX) + pad * 2;
+const currentViewH = (maxY - minY) + pad * 2;
+svg.setAttribute('viewBox', `${currentViewX} ${currentViewY} ${currentViewW} ${currentViewH}`);
+
+function showChefTooltip(i, svgPos){
+  const chef = chefs[i];
+  const tip = document.getElementById('node-tooltip');
+  document.getElementById('tt-title').textContent = chef.name;
+  const statusEl = document.getElementById('tt-status');
+  statusEl.textContent = chef.label;
+  statusEl.style.color = statusColorHex[chef.status];
+  document.getElementById('tt-text').textContent = chef.detail;
+
+  const wrap = document.getElementById('network-wrap');
+  const wrapRect = wrap.getBoundingClientRect();
+  const svgRect = svg.getBoundingClientRect();
+  // scale against the SVG's own rendered size, since on narrow screens it can be
+  // wider than the scrollable wrapper around it
+  const scale = svgRect.width / currentViewW;
+  // position relative to the wrap's scroll container, accounting for how far
+  // the SVG's left edge sits relative to the wrap (0 if not scrolled)
+  const svgOffsetX = svgRect.left - wrapRect.left + wrap.scrollLeft;
+  let px = svgOffsetX + (svgPos.x - currentViewX) * scale;
+  let py = (svgPos.y - currentViewY) * scale;
+
+  tip.classList.add('show');
+  const tipW = 230, tipH = 110;
+  const visibleW = wrap.clientWidth;
+  px = Math.min(Math.max(px - tipW/2, wrap.scrollLeft + 8), wrap.scrollLeft + visibleW - tipW - 8);
+  py = Math.min(Math.max(py + 14, 8), wrapRect.height - tipH - 8);
+  tip.style.left = px + 'px';
+  tip.style.top = py + 'px';
+}
+document.getElementById('tt-close').addEventListener('click', () => {
+  document.getElementById('node-tooltip').classList.remove('show');
+});
+
+/* ---------------- TABS ---------------- */
+
+document.querySelectorAll('nav.tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
