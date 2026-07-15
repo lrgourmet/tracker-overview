@@ -559,7 +559,8 @@ const statusColor = {
 };
 const statusColorHex = {
   signed:"#3F6B3A", negotiating:"#8B2635", waiting:"#B8860B",
-  backburner:"#A99A7C", blocked:"#7A716A", gap:"#9C8FBF", open:"#4C6C8C", production:"#4A7A78"
+  backburner:"#A99A7C", blocked:"#7A716A", gap:"#9C8FBF", open:"#4C6C8C", production:"#4A7A78",
+  mndaSigned:"#7A9B76"
 };
 
 const suppliersFood = [
@@ -569,10 +570,10 @@ const suppliersFood = [
   {name:"Fallot", status:"waiting", label:"MNDA Sent \u2014 Awaiting Signature", detail:"Mustard supplier. MNDA sent, awaiting signature back."},
   {name:"Apidis", status:"waiting", label:"MNDA Sent \u2014 Awaiting Signature", detail:"Honey supplier. MNDA sent, awaiting signature back."},
   {name:"Le Waf", status:"signed", label:"Onboarded", detail:"Waffle supplier, now onboarded. Supports the JP Morgan 90-day shelf-life assortment tier."},
-  {name:"S\u00e8chey", status:"waiting", label:"MNDA Signed", detail:"Non-alcoholic wine. Francis and Charles testing product. Small bottles are the priority format. Possible connection to Aldo Sohm partnership. MNDA signed."},
+  {name:"S\u00e8chey", status:"mndaSigned", label:"MNDA Signed", detail:"Non-alcoholic wine. Francis and Charles testing product. Small bottles are the priority format. Possible connection to Aldo Sohm partnership. MNDA signed."},
   {name:"Hammond's / Lolli & Pop's", status:"waiting", label:"MNDA Not Yet Sent", detail:"Confectionery suppliers. MNDA not yet sent."},
   {name:"Savencia Cheese", status:"waiting", label:"MNDA Not Yet Sent", detail:"Cheese supplier, tied to the Daniel Boulud cheese tray concept. MNDA not yet sent."},
-  {name:"Moutarde Pommery", status:"waiting", label:"MNDA Signed \u2014 Pricing Pending", detail:"Mustard supplier. MNDA signed; still waiting on their pricing before onboarding is complete."},
+  {name:"Moutarde Pommery", status:"mndaSigned", label:"MNDA Signed \u2014 Pricing Pending", detail:"Mustard supplier. MNDA signed; still waiting on their pricing before onboarding is complete."},
   {name:"Regiis Ova Caviar", status:"waiting", label:"MNDA Not Yet Sent", detail:"Thomas Keller-linked caviar supplier. Being onboarded alongside Paramount Caviar rather than choosing one over the other."},
   {name:"Paramount Caviar", status:"waiting", label:"MNDA Not Yet Sent", detail:"Being onboarded alongside Regiis Ova rather than choosing one over the other. Can ship and produce boxes directly; still need to get them into the showroom."}
 ];
