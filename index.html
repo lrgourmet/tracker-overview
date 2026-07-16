@@ -579,6 +579,7 @@ const suppliersFood = [
 ];
 
 const suppliersNonFood = [
+  {name:"Regali Rigid Boxes", status:"waiting", label:"New Supplier", detail:"Rigid box supplier, newly identified for the Paella kit and lux box sizing."},
   {name:"Valley Container", status:"production", label:"Box Supplier", detail:"Corrugated box producer, an established packaging partner for standard and custom boxes."},
   {name:"Pack Edge", status:"production", label:"Box Supplier", detail:"Baguette box producer. Awaiting full baguette samples so they can adjust the box size and requote."},
   {name:"Garnier Thiebaut", status:"waiting", label:"Waiting on Design", detail:"LRG-branded kitchen towel supplier. Not an onboarding item \u2014 waiting on towel designs; a new design brief needs to be sent."}
@@ -596,13 +597,13 @@ const progress = [
   {name:"Rigid Box Suppliers", status:"open", label:"In Progress", detail:"Several suppliers already identified for rigid boxes. Still need to define final box sizes for the Paella kit and lux box versions before finalizing."},
   {name:"Thomas Keller Collaboration Box", status:"open", label:"In Progress", detail:"Co-designed box with the Thomas Keller team, moving in parallel with contract finalization. They want LRG to cover design costs for the box; still waiting to find out what those costs are."},
   {name:"Holiday Box", status:"open", label:"In Progress", detail:"Active design and assortment work underway."},
-  {name:"Paella Kit", status:"open", label:"In Progress", detail:"Waiting on two samples \u2014 rice and sofrito sauce. Also waiting on an introduction to the Costco buyer."},
+  {name:"Paella Kit", status:"open", label:"In Progress", detail:"Waiting on two samples, a bag of rice and sofrito sauce, before it can be sent out to get the box designed. Also waiting on an introduction to the Costco buyer."},
   {name:"Hilton Tapas Kit", status:"open", label:"In Progress", detail:"Built around José Andrés's signed book plus a tapas ramekins/board concept. Non-food items still need sourcing, and final pricing is outstanding. Also still waiting to hear whether Hilton approves of the concept at all."},
   {name:"JP Morgan Assortments", status:"open", label:"Needs Pricing", detail:"Two shelf-life tiers defined; final pricing still needs to be completed. Depends on Le Waf being onboarded to support the 90-day tier."},
-  {name:"Chef Jackets & Aprons (Everyday Uniforms)", status:"open", label:"In Progress", detail:"Sourcing chef jackets and aprons from Everyday Uniforms."}
 ];
 
 const pipeline = [
+  {name:"Chef Jackets & Aprons (Everyday Uniforms)", status:"gap", label:"Pipeline", detail:"Sourcing chef jackets and aprons from Everyday Uniforms."},
   {name:"Matcha Kit", status:"gap", label:"Needs Assortment", detail:"Palais des Thés product. Assortment still needs to be built."},
   {name:"Museum Boxes", status:"gap", label:"Pipeline", detail:"With Palais des Thés \u2014 targeting the Met, MoMA, and possibly the Guggenheim."},
   {name:"ASI Sales Channel", status:"gap", label:"Pipeline", detail:"Selling into the broader promotional-products distributor channel, beyond any single supplier."},
