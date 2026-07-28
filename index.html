@@ -532,6 +532,7 @@
 /* ---------------- DATA ---------------- */
 
 const chefs = [
+  {name:"Patrick O'Connell (The Inn at Little Washington)", status:"open", label:"In Discussion", detail:"Has a few CPGs already in their product line."},
   {name:"Kyle Connaughton (SingleThread Farms)", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. Potential to develop Lindera Farms drinking vinegar for LRG in-house products and with other chefs, including Daniel Boulud."},
   {name:"Sean Brock", status:"open", label:"In Discussion", detail:"In discussion."},
   {name:"Antonio Bachour", status:"open", label:"In Discussion", detail:"Pastry chef, in discussion."},
@@ -592,14 +593,17 @@ const suppliersFood = [
 
 const suppliersNonFood = [
   {name:"CIS Group France", status:"open", label:"In Discussion", detail:"In talks to buy crepe pans from them."},
-  {name:"Regali Rigid Boxes", status:"waiting", label:"New Supplier", detail:"Rigid box supplier, newly identified for the Paella kit and lux box sizing."},
+  {name:"East Color", status:"open", label:"In Discussion", detail:"Rigid box supplier for larger orders. Would handle Thomas Keller, the José Andrés Paella Kit, and possibly holiday boxes."},
+  {name:"Regali Rigid Boxes", status:"waiting", label:"New Supplier", detail:"Rigid box supplier for smaller, US-based orders."},
+  {name:"Everyday Uniforms", status:"gap", label:"Pipeline", detail:"Chef jackets only."},
+  {name:"Jones Supply", status:"gap", label:"Pipeline", detail:"Aprons. They already produce aprons for Jean-Georges."},
   {name:"Valley Container", status:"production", label:"Box Supplier", detail:"Corrugated box producer, an established packaging partner for standard and custom boxes."},
   {name:"Pack Edge", status:"production", label:"Box Supplier", detail:"Baguette box producer. Awaiting full baguette samples so they can adjust the box size and requote."},
   {name:"Garnier Thiebaut", status:"waiting", label:"Waiting on Design", detail:"LRG-branded kitchen towel supplier. Not an onboarding item \u2014 waiting on towel designs; a new design brief needs to be sent."}
 ];
 
 const inhouse = [
-  {name:"Baguette Kit", status:"open", label:"In Development", detail:"Two-pack confirmed (French + Sourdough) \u2014 no 3-pack. Waiting on packaging changes from design; hopefully in hand by Friday. Next step: get full samples over to Pack Edge to adjust box size and requote. Blocked on the chef side: St\u00e9phane Grattier's agreement is pending the general royalty template."},
+  {name:"Baguette Kit", status:"open", label:"In Development", detail:"Two-pack confirmed (French + Sourdough) \u2014 no 3-pack. Waiting on Pastry Star for updated size, final nutrition/allergen details, and the QR code. Next step: get full samples over to Pack Edge to adjust box size and requote. Blocked on the chef side: St\u00e9phane Grattier's agreement is pending the general royalty template."},
   {name:"Madeleine", status:"blocked", label:"Blocked \u2014 Royalty (Boulud)", detail:"In-house Madeleine product tied to Daniel Boulud, confirmed across three separate assortment meetings. On hold pending his royalty agreement."},
   {name:"BIY Cronut", status:"blocked", label:"Blocked \u2014 Royalty (Ansel)", detail:"In-house Cronut product tied to Dominique Ansel. On hold pending his royalty agreement."},
   {name:"Chicken & Waffles", status:"blocked", label:"Blocked \u2014 Royalty (Carla Hall)", detail:"In-house savory waffle product tied to Carla Hall. On hold pending her royalty agreement."},
@@ -620,7 +624,8 @@ const opportunities = [
 ];
 
 const pipeline = [
-  {name:"Chef Jackets & Aprons (Everyday Uniforms)", status:"gap", label:"Pipeline", detail:"Sourcing chef jackets and aprons from Everyday Uniforms."},
+  {name:"Chef Jackets (Everyday Uniforms)", status:"gap", label:"Pipeline", detail:"Sourcing chef jackets from Everyday Uniforms."},
+  {name:"Aprons (Jones Supply)", status:"gap", label:"Pipeline", detail:"Sourcing aprons from Jones Supply, who already produce for Jean-Georges."},
   {name:"Matcha Kit", status:"gap", label:"Needs Assortment", detail:"Palais des Thés product. Assortment still needs to be built."},
   {name:"Museum Boxes", status:"gap", label:"Pipeline", detail:"With Palais des Thés \u2014 targeting the Met, MoMA, and possibly the Guggenheim."},
   {name:"ASI Sales Channel", status:"gap", label:"Pipeline", detail:"Selling into the broader promotional-products distributor channel, beyond any single supplier."},
@@ -630,8 +635,8 @@ const pipeline = [
 const internal = [
   {name:"José Andrés Simplified Royalty Agreement", status:"waiting", label:"Awaiting Return", detail:"Sent to Christi (lawyer) to make the changes Stanislas and Tim recommended; awaiting her details back."},
   {name:"General Royalty Agreement", status:"waiting", label:"In Progress", detail:"Starting point is 3%. Will be sent to Christi (lawyer) once the José Andrés simplified agreement comes back from her. This template unblocks Ansel, Hall, Boulud, Aldo Sohm, and Stéphane Grattier all at once."},
-  {name:"Services Agreement", status:"waiting", label:"Awaiting Nicolas", detail:"Waiting on Nicolas to make the change; will move forward once that's done."},
-  {name:"Avalara", status:"waiting", label:"Unblocked \u2014 Signing", detail:"Tax compliance software. Now unblocked and about to be signed."},
+  {name:"Services Agreement", status:"signed", label:"Complete", detail:"Signed. To be removed from Internal Projects next week."},
+  {name:"Avalara", status:"signed", label:"Signed \u2014 Setting Up", detail:"Tax compliance software. Signed and now getting set up."},
   {name:"Cherry Bekeart", status:"waiting", label:"Awaiting Signature", detail:"Accounting firm agreement still awaiting signature, but moving forward."},
   {name:"Insurance", status:"waiting", label:"Cleared to Sign", detail:"Cleared to sign \u2014 coverage moving from $1M to $5M. D&O insurance also cleared to sign."},
   {name:"November Hudson Yards Event", status:"open", label:"Planning", detail:"Event planning in progress for November."},
