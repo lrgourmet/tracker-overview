@@ -473,7 +473,9 @@
       <h2>Supplier Network</h2>
       <div class="section-note">Non-chef partners: ingredients, packaging, and box production.</div>
     </div>
-    <h3 class="subhead">Food Suppliers</h3>
+    <h3 class="subhead">Chef Product Sourcing</h3>
+    <div class="grid" id="grid-suppliers-chefsourcing"></div>
+    <h3 class="subhead" style="margin-top:26px;">Food Suppliers</h3>
     <div class="grid" id="grid-suppliers-food"></div>
     <h3 class="subhead" style="margin-top:26px;">Non-Food &amp; Packaging Suppliers</h3>
     <div class="grid" id="grid-suppliers-nonfood"></div>
@@ -575,9 +577,16 @@ const statusColorHex = {
   mndaSigned:"#7A9B76"
 };
 
+const chefSourcing = [
+  {name:"Thomas Keller", status:"signed", label:"Keller+Manni & Cup4Cup", detail:"Products sourced directly through Keller+Manni and Cup4Cup."},
+  {name:"Jos\u00e9 Andr\u00e9s", status:"signed", label:"Via GFI", detail:"Products sourced through GFI."},
+  {name:"Mawa McQueen", status:"signed", label:"Direct", detail:"Products sourced directly."},
+  {name:"Claude Le Tohic", status:"signed", label:"One65 SF \u2014 Direct", detail:"Products sourced directly through One65 SF."}
+];
+
 const suppliersFood = [
   {name:"Lindera Farms", status:"signed", label:"Onboarded", detail:"MNDA signed, pricing provided, samples on the way. Makes non-alcoholic drinking vinegar \u2014 that's the product LRG would use. Currently working with José Andrés; LRG will too. Potential to develop for LRG in-house products and with other chefs, likely SingleThread Farms (Kyle Connaughton) and Daniel Boulud."},
-  {name:"Candystone Caverns", status:"waiting", label:"Waiting on Pricing", detail:"Confectionery supplier. Waiting on their pricing."},
+  {name:"Candystone Caverns", status:"waiting", label:"MNDA Sent \u2014 Awaiting Signature", detail:"Confectionery supplier. MNDA sent, awaiting signature back."},
   {name:"Pastry Star", status:"signed", label:"Active", detail:"Active supplier partner across baguette and other in-house baked product development."},
   {name:"Palais des Th\u00e9s", status:"signed", label:"Onboarded", detail:"MNDA signed. Needs to be worked into box assortments. ASI channel angle in play \u2014 selling into other gifting companies, not just direct. Tea box with Daniel Boulud is blocked pending his royalty agreement. Museum box collaboration work needs to get moving."},
   {name:"Fallot", status:"waiting", label:"MNDA Sent \u2014 Awaiting Signature", detail:"Mustard supplier. MNDA sent, awaiting signature back."},
@@ -659,6 +668,7 @@ function renderGrid(containerId, items){
   `).join('');
 }
 
+renderGrid('grid-suppliers-chefsourcing', chefSourcing);
 renderGrid('grid-suppliers-food', suppliersFood);
 renderGrid('grid-suppliers-nonfood', suppliersNonFood);
 renderGrid('grid-inhouse', inhouse);
