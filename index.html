@@ -597,13 +597,13 @@ const suppliersFood = [
   {name:"Savencia Cheese", status:"waiting", label:"MNDA Not Yet Sent", detail:"Cheese supplier, tied to the Daniel Boulud cheese tray concept. MNDA not yet sent."},
   {name:"Moutarde Pommery", status:"mndaSigned", label:"MNDA Signed \u2014 Pricing Pending", detail:"Mustard supplier. MNDA signed; still waiting on their pricing before onboarding is complete."},
   {name:"Regiis Ova Caviar", status:"waiting", label:"MNDA Not Yet Sent", detail:"Thomas Keller-linked caviar supplier. Being onboarded alongside Paramount Caviar rather than choosing one over the other."},
-  {name:"Paramount Caviar", status:"waiting", label:"MNDA Not Yet Sent", detail:"Being onboarded alongside Regiis Ova rather than choosing one over the other. Can ship and produce boxes directly; still need to get them into the showroom."}
+  {name:"Paramount Caviar", status:"open", label:"In Discussion", detail:"Being onboarded alongside Regiis Ova rather than choosing one over the other. Can ship and produce boxes directly; still need to get them into the showroom."}
 ];
 
 const suppliersNonFood = [
   {name:"CIS Group France", status:"open", label:"In Discussion", detail:"In talks to buy crepe pans from them."},
   {name:"East Color", status:"open", label:"In Discussion", detail:"Rigid box supplier for larger orders. Would handle Thomas Keller, the José Andrés Paella Kit, and possibly holiday boxes."},
-  {name:"Regali Rigid Boxes", status:"waiting", label:"New Supplier", detail:"Rigid box supplier for smaller, US-based orders."},
+  {name:"Rigali Rigid Boxes", status:"waiting", label:"New Supplier", detail:"Rigid box supplier for smaller, US-based orders."},
   {name:"Everyday Uniforms", status:"gap", label:"Pipeline", detail:"Chef jackets only."},
   {name:"Jones Supply", status:"gap", label:"Pipeline", detail:"Aprons. They already produce aprons for Jean-Georges."},
   {name:"Valley Container", status:"production", label:"Box Supplier", detail:"Corrugated box producer, an established packaging partner for standard and custom boxes."},
@@ -621,16 +621,16 @@ const inhouse = [
 
 const progress = [
   {name:"Rigid Box Suppliers", status:"open", label:"In Progress", detail:"Several suppliers already identified for rigid boxes. Still need to define final box sizes for the Paella kit and lux box versions before finalizing."},
-  {name:"Thomas Keller Collaboration Box", status:"open", label:"In Progress", detail:"Co-designed box with the Thomas Keller team, moving in parallel with contract finalization. They want LRG to cover design costs for the box; sent follow-up questions and now waiting to hear back from his team."},
-  {name:"Holiday Box", status:"open", label:"In Progress", detail:"Active design and assortment work underway."},
-  {name:"Paella Kit", status:"open", label:"In Progress", detail:"Waiting on two samples, a bag of rice and sofrito sauce, before it can be sent out to get the box designed. Also waiting on an introduction to the Costco buyer."}
+  {name:"Thomas Keller Collaboration Box", status:"open", label:"In Progress", detail:"Co-designed box with the Thomas Keller team. Agreed to share the box development costs; they're now waiting on us to update the agreement for their review."},
+  {name:"Holiday Box", status:"open", label:"In Progress", detail:"Active design and assortment work underway. Design call scheduled for tomorrow."},
+  {name:"Paella Kit", status:"open", label:"In Progress", detail:"All samples now in hand, rice and sofrito sauce. Moving forward with East Color to design the box."}
 ];
 
 const opportunities = [
   {name:"Artistic Tile", status:"gap", label:"New Opportunity", detail:"LRP client. 600 units at $30\u2013$50 per box. Sending them options to build their own box."},
   {name:"Hilton Tapas Kit", status:"waiting", label:"Defining Assortment", detail:"Reached out to Pere to see if he wants to curate it. Working budget estimate is $100\u2013$200 per box at roughly 100 units. Likely contents: José Andrés's signed book, ramekins, a cutting board, and other food items."},
   {name:"JP Morgan Assortments", status:"open", label:"Awaiting Presentation", detail:"Sent to Rachel, waiting to be presented to JP Morgan. Pricing and everything on our end is done."},
-  {name:"ArentFox Schiff Holiday Set", status:"gap", label:"New Opportunity", detail:"Third opportunity. Need to give Gerard a budget for the box; getting more information tomorrow."}
+  {name:"ArentFox Schiff Holiday Set", status:"gap", label:"New Opportunity", detail:"Direct sale. Finalizing images for the presentation; two assortment options defined."}
 ];
 
 const pipeline = [
@@ -643,10 +643,10 @@ const pipeline = [
 ];
 
 const internal = [
-  {name:"José Andrés Simplified Royalty Agreement", status:"waiting", label:"Awaiting Return", detail:"Sent to Christi (lawyer) to make the changes Stanislas and Tim recommended; awaiting her details back."},
-  {name:"General Royalty Agreement", status:"waiting", label:"In Progress", detail:"Starting point is 3%. Will be sent to Christi (lawyer) once the José Andrés simplified agreement comes back from her. This template unblocks Ansel, Hall, Boulud, Aldo Sohm, and Stéphane Grattier all at once."},
+  {name:"José Andrés Simplified Royalty Agreement", status:"waiting", label:"Awaiting Return", detail:"Sent to Christi (lawyer) to make the changes Stanislas and Tim recommended; awaiting her return."},
+  {name:"General Royalty Agreement", status:"waiting", label:"Awaiting Return", detail:"Starting point is 3%. In progress with Christi (lawyer); awaiting her return. This template unblocks Ansel, Hall, Boulud, Aldo Sohm, and Stéphane Grattier all at once."},
   {name:"Services Agreement", status:"signed", label:"Complete", detail:"Signed. To be removed from Internal Projects next week."},
-  {name:"Avalara", status:"signed", label:"Signed \u2014 Setting Up", detail:"Tax compliance software. Signed and now getting set up."},
+  {name:"Avalara", status:"signed", label:"Signed \u2014 Setting Up", detail:"Tax compliance software. Signed; invoices can go out once setup and integration are complete."},
   {name:"Cherry Bekeart", status:"waiting", label:"Awaiting Signature", detail:"Accounting firm agreement still awaiting signature, but moving forward."},
   {name:"Insurance", status:"waiting", label:"Cleared to Sign", detail:"Cleared to sign \u2014 coverage moving from $1M to $5M. D&O insurance also cleared to sign."},
   {name:"November Hudson Yards Event", status:"open", label:"Planning", detail:"Event planning in progress for November."},
