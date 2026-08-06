@@ -440,6 +440,7 @@
     <div class="legend-grid">
       <div class="legend-card"><span class="dot" style="background:var(--c-signed)"></span><div><b>Signed / Active</b><p>Contract executed, actively selling.</p></div></div>
       <div class="legend-card"><span class="dot" style="background:var(--c-negotiating)"></span><div><b>In Negotiation</b><p>Deal terms actively being finalized.</p></div></div>
+      <div class="legend-card"><span class="dot" style="background:#6B5B95"></span><div><b>Waiting on Lawyer</b><p>Terms agreed; final agreement is with counsel before signature.</p></div></div>
       <div class="legend-card"><span class="dot" style="background:var(--gold)"></span><div><b>Waiting on Paperwork</b><p>Basic agreement or MNDA sent, not yet signed.</p></div></div>
       <div class="legend-card"><span class="dot" style="background:var(--c-backburner)"></span><div><b>Back Burner</b><p>Paused on an unresolved complication.</p></div></div>
       <div class="legend-card"><span class="dot" style="background:var(--c-blocked)"></span><div><b>Blocked — Royalty Template</b><p>On hold until the general chef royalty agreement is finalized.</p></div></div>
@@ -540,11 +541,11 @@ const chefs = [
   {name:"Antonio Bachour", status:"open", label:"In Discussion", detail:"Pastry chef, in discussion."},
   {name:"Mawa McQueen", status:"signed", label:"Signed", detail:"Signed and active. Bowl, spoon, and granola set currently in design/production."},
   {name:"Claude Le Tohic", status:"signed", label:"Signed", detail:"Signed and active. No open items."},
-  {name:"José Andrés", status:"negotiating", label:"In Negotiation", detail:"Deciding today on the approach for a simplified royalty agreement."},
-  {name:"Thomas Keller", status:"negotiating", label:"In Negotiation", detail:"Waiting on contract feedback. His team is designing a collaboration box in parallel and won't walk away from it unsigned. Also waiting on approval to use his image in the meantime."},
-  {name:"Thierry Atlan", status:"open", label:"In Discussion", detail:"Redlines are with Nicolas for review, then out for signature."},
+  {name:"José Andrés", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting on Christi. José's team still needs to review some notes."},
+  {name:"Thomas Keller", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting to hear which lawyer on their side is going to respond."},
+  {name:"Thierry Atlan", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting on Nicolas to return the final proposal so it can be sent out to them."},
   {name:"Jean-Georges", status:"backburner", label:"Back Burner", detail:"On hold. Complication is twofold: restarting some products that were previously made with other suppliers, and navigating a contact on their side who isn't very open to moving forward."},
-  {name:"Loiseau", status:"waiting", label:"Sent for Review", detail:"Contract sent out for review. Once approved, it will go out for digital signature."},
+  {name:"Loiseau", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting on Christi's approval of the finalized agreement. Once approved, it will go out for digital signature."},
   {name:"Dominique Ansel", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. BIY Cronut product is on hold as a result."},
   {name:"Carla Hall", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. Chicken & Waffles and Biscuits products are on hold as a result."},
   {name:"Daniel Boulud", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. Madeleine product is on hold as a result (confirmed across three separate assortment meetings)."},
@@ -556,9 +557,9 @@ const chefs = [
   {name:"Mexican / Tex-Mex", status:"gap", label:"Cuisine Gap", detail:"Gap in current roster. No chef identified yet."}
 ];
 
-const statusOrder = ["signed","negotiating","waiting","backburner","open","blocked","gap"];
+const statusOrder = ["signed","negotiating","lawyerHold","waiting","backburner","open","blocked","gap"];
 const statusGroupLabel = {
-  signed:"Signed / Active", negotiating:"In Negotiation", waiting:"Waiting on Paperwork",
+  signed:"Signed / Active", negotiating:"In Negotiation", lawyerHold:"Waiting on Lawyer", waiting:"Waiting on Paperwork",
   backburner:"Back Burner", open:"In Discussion", blocked:"Blocked \u2014 Royalty Template", gap:"Cuisine Gap"
 };
 
@@ -574,7 +575,7 @@ const statusColor = {
 const statusColorHex = {
   signed:"#3F6B3A", negotiating:"#8B2635", waiting:"#B8860B",
   backburner:"#A99A7C", blocked:"#7A716A", gap:"#9C8FBF", open:"#4C6C8C", production:"#4A7A78",
-  mndaSigned:"#7A9B76"
+  mndaSigned:"#7A9B76", lawyerHold:"#6B5B95"
 };
 
 const chefSourcing = [
@@ -733,15 +734,15 @@ function polar(r, angleDeg){
 }
 
 const hubShortLabel = {
-  signed:"Signed", negotiating:"Negotiating", waiting:"Waiting", backburner:"Back Burner",
+  signed:"Signed", negotiating:"Negotiating", lawyerHold:"Waiting on Lawyer", waiting:"Waiting", backburner:"Back Burner",
   open:"In Discussion", blocked:"Blocked", gap:"Gaps"
 };
 
-// deliberate layout order, going clockwise from the left: Signed, Negotiating, Waiting,
-// Blocked, In Discussion, Back Burner, Gaps
-const layoutOrder = ["signed","negotiating","waiting","gap","backburner","open","blocked"];
+// deliberate layout order, going clockwise from the left: Signed, Negotiating, Waiting on Lawyer,
+// Waiting, Blocked, In Discussion, Back Burner, Gaps
+const layoutOrder = ["signed","negotiating","lawyerHold","waiting","gap","backburner","open","blocked"];
 const angleStart = -75; // degrees, offset off vertical
-const headerDist = { signed:200, negotiating:255, waiting:270, blocked:300, open:290, backburner:270, gap:225 };
+const headerDist = { signed:200, negotiating:255, lawyerHold:280, waiting:270, blocked:300, open:290, backburner:270, gap:225 };
 
 // --- defs: soft glow behind the center node ---
 const defs = makeEl('defs', {});
