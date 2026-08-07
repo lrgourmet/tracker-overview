@@ -1,0 +1,35 @@
+/* ============================================================
+   Wufoo Custom CSS — Hide Form Title + Center Logo
+   LR Paris / Jumpsuit sign-up form
+   ============================================================
+
+   HOW TO USE:
+   1. Host this file somewhere with a public URL (e.g. a simple
+      static host, GitHub Pages, your own server, etc.).
+   2. In Wufoo: go to Theme Designer > Advanced, and paste the
+      URL to this file into the "Custom CSS" / stylesheet link
+      field, then save/apply the theme to your form.
+   3. Preview your form. If anything looks slightly off, it's
+      almost always because Wufoo tweaked its underlying HTML
+      since this was written — right-click the logo or title
+      area, choose "Inspect," and adjust the selector names
+      below to match what you see.
+   ============================================================ */
+
+/* --- Hide the form title, name, and description block --- */
+.wufoo .info {
+  display: none;
+}
+
+/* --- Center the logo --- */
+#logo {
+  text-align: center;
+  float: none !important;
+  width: 100% !important;
+}
+
+#logo a {
+  display: inline-block;
+  float: none !important;
+  margin: 0 auto !important;
+}
