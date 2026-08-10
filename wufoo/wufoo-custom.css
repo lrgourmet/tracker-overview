@@ -26,7 +26,14 @@
 }
 
 #logo a {
+  display: block !important;
   float: none !important;
-  display: inline-block !important;
   margin: 0 auto !important;
+  width: 300px !important;
+  height: 80px !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
 }
