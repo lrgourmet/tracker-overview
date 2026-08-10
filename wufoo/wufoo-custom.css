@@ -16,20 +16,17 @@
       below to match what you see.
    ============================================================ */
 
-/* --- Hide the form title, name, and description block --- */
 .wufoo .info {
   display: none;
 }
 
-/* --- Center the logo --- */
 #logo {
-  text-align: center;
-  float: none !important;
-  width: 100% !important;
+  text-align: center !important;
+  overflow: visible !important;
 }
 
 #logo a {
-  display: inline-block;
   float: none !important;
+  display: inline-block !important;
   margin: 0 auto !important;
 }
