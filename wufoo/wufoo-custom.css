@@ -1,6 +1,6 @@
 /* ============================================================
-   Wufoo Custom CSS — Hide Form Title Only + Center Logo
-   Latham & Watkins jogger sign-up form
+   Wufoo Custom CSS — Latham & Watkins jogger sign-up form
+   Hide title (keep description) + centered logo + red/black theme
    ============================================================ */
 
 /* Hide just the title heading, keep the description text below it */
@@ -20,9 +20,19 @@
   margin: 0 auto !important;
   width: 300px !important;
   height: 80px !important;
+  background-image: url("https://lrgourmet.github.io/tracker-overview/wufoo/Latham_%26_Watkins-Logo.png") !important;
   background-size: contain !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   text-indent: -9999px !important;
   overflow: hidden !important;
+}
+
+/* Red page background, black border on the white form card */
+html, body {
+  background-color: #AC0000 !important;
+}
+
+#container {
+  border-color: #000000 !important;
 }
