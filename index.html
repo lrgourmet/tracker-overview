@@ -536,12 +536,12 @@
 
 const chefs = [
   {name:"Patrick O'Connell (The Inn at Little Washington)", status:"open", label:"In Discussion", detail:"Has a few CPGs already in their product line."},
-  {name:"Kyle Connaughton (SingleThread Farms)", status:"blocked", label:"Blocked \u2014 Royalty Template", detail:"Blocked pending the general royalty template. Has a new supplier in Japan; product should be ready in October. Ready to start talking again. Potential to develop Lindera Farms drinking vinegar for LRG in-house products and with other chefs, including Daniel Boulud."},
+  {name:"Kyle Connaughton (SingleThread Farms)", status:"open", label:"In Discussion", detail:"Has a new supplier in Japan; product should be ready in October. Ready to start talking again. Potential to develop Lindera Farms drinking vinegar for LRG in-house products and with other chefs, including Daniel Boulud."},
   {name:"Sean Brock", status:"open", label:"In Discussion", detail:"In discussion."},
   {name:"Antonio Bachour", status:"open", label:"In Discussion", detail:"Pastry chef, in discussion."},
   {name:"Mawa McQueen", status:"signed", label:"Signed", detail:"Signed and active. Bowl, spoon, and granola set currently in design/production."},
   {name:"Claude Le Tohic", status:"signed", label:"Signed", detail:"Signed and active. No open items."},
-  {name:"José Andrés", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting on Christi. José's team still needs to review some notes."},
+  {name:"José Andrés", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Royalty agreement received back and is now with José Andrés and his lawyers for review."},
   {name:"Thomas Keller", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting to hear which lawyer on their side is going to respond."},
   {name:"Thierry Atlan", status:"lawyerHold", label:"Waiting on Lawyer", detail:"Waiting on Nicolas to return the final proposal so it can be sent out to them."},
   {name:"Jean-Georges", status:"backburner", label:"Back Burner", detail:"On hold. Complication is twofold: restarting some products that were previously made with other suppliers, and navigating a contact on their side who isn't very open to moving forward."},
@@ -586,6 +586,7 @@ const chefSourcing = [
 ];
 
 const suppliersFood = [
+  {name:"Compartes", status:"waiting", label:"New Supplier", detail:"For screen-printed chocolate."},
   {name:"Lindera Farms", status:"signed", label:"Onboarded", detail:"MNDA signed, pricing provided, samples on the way. Makes non-alcoholic drinking vinegar \u2014 that's the product LRG would use. Currently working with José Andrés; LRG will too. Potential to develop for LRG in-house products and with other chefs, likely SingleThread Farms (Kyle Connaughton) and Daniel Boulud."},
   {name:"Candystone Caverns", status:"mndaSigned", label:"MNDA Signed", detail:"Confectionery supplier. MNDA signed."},
   {name:"Pastry Star", status:"signed", label:"Active", detail:"Active supplier partner across baguette and other in-house baked product development."},
@@ -598,13 +599,13 @@ const suppliersFood = [
   {name:"Savencia Cheese", status:"waiting", label:"MNDA Not Yet Sent", detail:"Cheese supplier, tied to the Daniel Boulud cheese tray concept. MNDA not yet sent."},
   {name:"Moutarde Pommery", status:"mndaSigned", label:"MNDA Signed \u2014 Pricing Pending", detail:"Mustard supplier. MNDA signed; still waiting on their pricing before onboarding is complete."},
   {name:"Regiis Ova Caviar", status:"waiting", label:"MNDA Not Yet Sent", detail:"Thomas Keller-linked caviar supplier. Being onboarded alongside Paramount Caviar rather than choosing one over the other."},
-  {name:"Paramount Caviar", status:"open", label:"In Discussion", detail:"Conversation went well. Being onboarded alongside Regiis Ova rather than choosing one over the other. Invited to the showroom and the open house."}
+  {name:"Paramount Caviar", status:"open", label:"In Discussion", detail:"Conversation went well. Being onboarded alongside Regiis Ova rather than choosing one over the other. Invited to the showroom and the open house. Tim following up for pricing."}
 ];
 
 const suppliersNonFood = [
   {name:"CIS Group France", status:"open", label:"In Discussion", detail:"In talks to buy crepe pans from them. Still waiting on their pricing."},
-  {name:"East Color", status:"open", label:"In Discussion", detail:"Rigid box supplier for larger orders. Would handle Thomas Keller, the José Andrés Paella Kit, and possibly holiday boxes."},
-  {name:"Durolle Emballages", status:"production", label:"Box Supplier", detail:"One of Dan's suppliers for rigid boxes, with great pricing. Decided \u2014 we'll use them for smaller, US-based orders. Durolle is currently on vacation; we have multiple jobs ready to send once back."},
+  {name:"East Color", status:"open", label:"In Discussion", detail:"Rigid box supplier for larger orders. Will handle the Holiday Box; also linked to Thomas Keller."},
+  {name:"Durolle Emballages", status:"production", label:"Box Supplier", detail:"One of Dan's suppliers for rigid boxes, with great pricing. Decided \u2014 we'll use them for smaller, US-based orders. Will likely do the José Andrés rigid box for the Costco sample. Durolle is currently on vacation; we have multiple jobs ready to send once back. Tim getting rigid box pricing from them."},
   {name:"Everyday Uniforms", status:"gap", label:"Pipeline", detail:"Chef jackets only."},
   {name:"Jones Supply", status:"signed", label:"Onboarded", detail:"Aprons. They already produce aprons for Jean-Georges."},
   {name:"Valley Container", status:"production", label:"Box Supplier", detail:"Corrugated box producer, an established packaging partner for standard and custom boxes."},
@@ -613,7 +614,7 @@ const suppliersNonFood = [
 ];
 
 const inhouse = [
-  {name:"Baguette Kit", status:"open", label:"In Development", detail:"Two-pack confirmed (French + Sourdough) \u2014 no 3-pack. Sent Pastry Star two boxes for test fitting so they can tell us how much bigger to make the box. Also waiting on final nutrition/allergen details and the QR code. Blocked on the chef side: St\u00e9phane Grattier's agreement is pending the general royalty template."},
+  {name:"Baguette Kit", status:"open", label:"In Development", detail:"Two-pack confirmed (French + Sourdough) \u2014 no 3-pack. Sent Pastry Star two boxes for test fitting so they can tell us how much bigger to make the box; haven't heard back from Eric there yet, Tim to follow up. Open question: need a retail packaging consultant \u2014 Gerard and Stanislas both helping identify one. Blocked on the chef side: St\u00e9phane Grattier's agreement is pending the general royalty template."},
   {name:"Madeleine", status:"blocked", label:"Blocked \u2014 Royalty (Boulud)", detail:"In-house Madeleine product tied to Daniel Boulud, confirmed across three separate assortment meetings. On hold pending his royalty agreement."},
   {name:"BIY Cronut", status:"blocked", label:"Blocked \u2014 Royalty (Ansel)", detail:"In-house Cronut product tied to Dominique Ansel. On hold pending his royalty agreement."},
   {name:"Chicken & Waffles", status:"blocked", label:"Blocked \u2014 Royalty (Carla Hall)", detail:"In-house savory waffle product tied to Carla Hall. On hold pending her royalty agreement."},
@@ -621,20 +622,28 @@ const inhouse = [
 ];
 
 const progress = [
+  {name:"Open House", status:"open", label:"In Progress", detail:"Gerard and Stanislas both gathering contacts to invite. Already invited: KBW, Paramount Caviar."},
+  {name:"Holiday Gift Box Invite List", status:"open", label:"In Progress", detail:"Building the invite list."},
+  {name:"Desk Drop Boxes", status:"open", label:"In Progress", detail:"Desk drop boxes arrive next week. Still need to finish the business card/brochure design and confirm the final assortment."},
+  {name:"Sales Role Hiring", status:"open", label:"In Progress", detail:"Monitoring LinkedIn applications for the sales role over the next couple of weeks."},
   {name:"Aprons (Jones Supply)", status:"open", label:"In Progress", detail:"Sourcing aprons from Jones Supply, who already produce for Jean-Georges."},
-  {name:"Thierry Atlan Porcelain Macaron Tray", status:"open", label:"In Progress", detail:"Concept identified, pending Thierry Atlan's agreement."},
+  {name:"Thierry Atlan Porcelain Macaron Tray", status:"open", label:"In Progress", detail:"With design now."},
   {name:"Thomas Keller Collaboration Box", status:"open", label:"In Progress", detail:"Co-designed box with the Thomas Keller team. Agreed to share the box development costs. Tim is working on the agreement update to send to Nicolas for review."},
-  {name:"Holiday Box", status:"open", label:"In Progress", detail:"Design is in, but still going back and forth with Dan \u2014 slight changes needed."},
+  {name:"Holiday Box", status:"open", label:"In Progress", detail:"Design is in, but still going back and forth with Dan \u2014 slight changes needed. East Color will do the box."},
   {name:"Paella Kit", status:"open", label:"In Progress", detail:"All samples now in hand, rice and sofrito sauce. Moving forward with East Color to design the box."}
 ];
 
 const opportunities = [
-  {name:"Jos\u00e9 Andr\u00e9s Paella Kit \u2014 Jos\u00e9 Andr\u00e9s Foods & GFI", status:"gap", label:"New Opportunity", detail:"New opportunity."},
+  {name:"Daniel Boulud Holiday Box Products", status:"gap", label:"New Opportunity", detail:"Jam, honey, chocolate spread, sauces, and spoon. Tim working with Gerard to price these out against a $40 budget."},
+  {name:"KBW", status:"backburner", label:"No Active Opportunity", detail:"Investment banking firm, coming to the open house. Runs ~300 events a year (from 30-person to 1,000-person). Most likely would need food only, not boxes. No active opportunity at the moment \u2014 relationship building."},
+  {name:"Fanatics", status:"gap", label:"New Opportunity", detail:"Wants a Valentine's Day \u201cLetter F\u201d chocolate box with four chocolates inside."},
+  {name:"Brookfield Wealth", status:"gap", label:"New Opportunity", detail:"Just connected. Waiting for confirmation on a meeting; not sure what they need yet."},
+  {name:"Jos\u00e9 Andr\u00e9s Paella Kit \u2014 Jos\u00e9 Andr\u00e9s Foods & GFI", status:"open", label:"With Design", detail:"With design now. Durolle will likely do the rigid box for the Costco sample."},
   {name:"Morgan Stanley 50 Year Chocolates", status:"gap", label:"New Opportunity", detail:"LRP client."},
-  {name:"Hilton Tapas Kit", status:"waiting", label:"Pricing & Design", detail:"Reached out to Pere to see if he wants to curate it. Working budget estimate is $100\u2013$200 per box at roughly 100 units. Likely contents: José Andrés's signed book, ramekins, a cutting board, and other food items. Now pricing out the kit and designing the box."},
-  {name:"JP Morgan Assortments", status:"open", label:"Awaiting Presentation", detail:"Sent to Rachel, waiting to be presented to JP Morgan. Pricing and everything on our end is done."},
-  {name:"ArentFox Schiff Holiday Set", status:"waiting", label:"Awaiting Feedback", detail:"Direct sale. Presentation has been sent; waiting for feedback."},
-  {name:"GFI \u2014 Mama DePandi PR Boxes", status:"gap", label:"New Opportunity", detail:"New opportunity via GFI."}
+  {name:"Hilton Tapas Kit", status:"open", label:"With Design", detail:"Assortment nailed down. Now with design for packaging. Roughly $100 per unit; projected profit around $13,000\u2013$14,000."},
+  {name:"JP Morgan Assortments", status:"open", label:"Awaiting Presentation", detail:"Sent to Rachel, waiting to be presented to JP Morgan. Pricing and everything on our end is done. Tim following up on next steps."},
+  {name:"ArentFox Schiff Holiday Set", status:"waiting", label:"Revising Options", detail:"Direct sale. They didn't like the options sent \u2014 too close to their items from last year. Need to send new options. Tim following up on the second round."},
+  {name:"GFI \u2014 Mama DePandi PR Boxes", status:"backburner", label:"Gone Cold", detail:"Influencer food box opportunity featuring their product. Options sent; gone cold. Tim following up."}
 ];
 
 const pipeline = [
@@ -646,13 +655,14 @@ const pipeline = [
 
 const internal = [
   {name:"José Andrés Simplified Royalty Agreement", status:"waiting", label:"Awaiting Return", detail:"Sent to Christi (lawyer) to make the changes Stanislas and Tim recommended; awaiting her return."},
-  {name:"General Royalty Agreement", status:"waiting", label:"Awaiting Return", detail:"Starting point is 3%. In progress with Christi (lawyer); awaiting her return. This template unblocks Ansel, Hall, Boulud, Aldo Sohm, and Stéphane Grattier all at once."},
+  {name:"General Royalty Agreement", status:"waiting", label:"Under Review", detail:"Starting point is 3%. Received back from Christi and Tim is reviewing it now; to be discussed on tomorrow's call. This unblocks Ansel, Hall, Boulud, Aldo Sohm, and Stéphane Grattier all at once."},
   {name:"Services Agreement", status:"signed", label:"Complete", detail:"Signed. To be removed from Internal Projects next week."},
   {name:"Avalara", status:"signed", label:"Signed \u2014 Setting Up", detail:"Tax compliance software. Signed; invoices can go out once setup and integration are complete."},
   {name:"Cherry Bekeart", status:"waiting", label:"Awaiting Signature", detail:"Accounting firm agreement still awaiting signature, but moving forward."},
   {name:"Insurance", status:"waiting", label:"Cleared to Sign", detail:"Cleared to sign \u2014 coverage moving from $1M to $5M. D&O insurance also cleared to sign."},
   {name:"November Hudson Yards Event", status:"open", label:"Planning", detail:"Event planning in progress for November."},
-  {name:"Dior Insert", status:"open", label:"In Progress", detail:"Packaging insert project for the boxes."}
+  {name:"Dior Insert", status:"waiting", label:"Awaiting Pricing", detail:"Packaging insert project for the boxes. Waiting on pricing, expected tomorrow."},
+  {name:"Tax Return", status:"waiting", label:"Awaiting Signature", detail:"Completed; Francis to sign."},
 ];
 
 /* ---------------- RENDER: CARD GRIDS ---------------- */
